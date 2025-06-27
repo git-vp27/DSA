@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+public class Array {
+
+    public static ArrayList<Integer> unionOfArrays(int arr[], int brr[]){
+        ArrayList<Integer> union = new ArrayList<>();
+        int i=0;
+        int j=0;
+
+        while (i<arr.length && j<brr.length){
+            if (arr[i]<=brr[j]){
+                if (!union.contains(arr[i])){
+                    union.add(arr[i]);
+                }
+                i++;
+            }
+            else {
+                if (!union.contains(brr[j])){
+                    union.add(brr[j]);
+                }
+                j++;
+            }
+        }
+        while (j<brr.length){
+            if (!union.contains(brr[j])){
+                union.add(brr[j]);
+            }
+            j++;
+        }
+        while (i<arr.length){
+            if (!union.contains(arr[i])){
+                union.add(arr[i]);
+            }
+            i++;
+        }
+
+        return union;
+    }
+
+
+    public static ArrayList<Integer> intersectionOfArrays(int arr[], int brr[]){
+        ArrayList<Integer> intersection = new ArrayList<>();
+        int i=0,j=0;
+
+        while (i<arr.length && j<brr.length){
+            if (arr[i]==brr[j]){
+                intersection.add(arr[i]);
+                i++;
+                j++;
+            }
+            else if (arr[i]<brr[j]){
+                i++;
+            }
+            else {
+                j++;
+            }
+        }
+
+        return intersection;
+    }
+
+    public static void main(String args[]){
+        int arr[] = {1,1,2,3,4,4,5,6};
+        int brr[] = {2,3,3,4,4,5,6,7};
+        System.out.println("Union : "+unionOfArrays(arr, brr));
+        System.out.println("Intersection : "+intersectionOfArrays(arr, brr));
+
+    }
+}
