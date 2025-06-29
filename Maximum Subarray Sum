@@ -1,0 +1,33 @@
+public class Array {
+
+    public static int maximumSum(int arr[]){
+        int maxSum=Integer.MIN_VALUE;
+        int sum=0;
+
+        int startIdx=-1, endIdx=-1;
+
+        for (int i=0; i<arr.length; i++){
+            sum+=arr[i];
+            if (sum>maxSum){
+                maxSum=sum;
+                endIdx=i;
+            }
+            if (sum<0){
+                sum=0;
+            }
+            if (sum==0){
+                startIdx=i;
+            }
+        }
+
+        System.out.println("StartIdx -> "+(startIdx+1));
+        System.out.println("EndIdx -> "+endIdx);
+        return maxSum;
+    }
+
+    
+    public static void main(String args[]){
+        int arr[] = {-2,-3,4,-1,-2,1,5,-3};
+        System.out.println(maximumSum(arr));
+    }
+}
